@@ -1,5 +1,5 @@
 import express from "express";
-import url from "url";
+// import url from "url";
 import path from "path";
 import http from "http";
 import { Server } from "socket.io";
@@ -11,6 +11,7 @@ const porta = process.env.PORT || 3000;
 
 // const caminhoAtual = url.fileURLToPath(import.meta.url);
 const diretorioPublico = path.join(process.cwd(), "public");
+console.log("Servindo arquivos estáticos de:", diretorioPublico);
 app.use(express.static(diretorioPublico));
 
 const servidorHttp = http.createServer(app);
