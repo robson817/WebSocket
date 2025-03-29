@@ -10,9 +10,11 @@ const app = express();
 const porta = process.env.PORT || 3000;
 
 // const caminhoAtual = url.fileURLToPath(import.meta.url);
-const diretorioPublico = path.join(process.cwd(), "public");
-console.log("Servindo arquivos estáticos de:", diretorioPublico);
-app.use(express.static(diretorioPublico));
+// const diretorioPublico = path.join(process.cwd(), "public");
+// console.log("Servindo arquivos estáticos de:", diretorioPublico);
+// app.use(express.static(diretorioPublico));
+app.use(express.static("/opt/render/project/src/public"));
+
 
 const servidorHttp = http.createServer(app);
 
