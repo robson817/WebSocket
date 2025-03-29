@@ -13,8 +13,7 @@ const porta = process.env.PORT || 3000;
 // const diretorioPublico = path.join(process.cwd(), "public");
 // console.log("Servindo arquivos estáticos de:", diretorioPublico);
 // app.use(express.static(diretorioPublico));
-app.use(express.static("/opt/render/project/src/public"));
-
+app.use("/static", express.static("/opt/render/project/src/public"));
 
 const servidorHttp = http.createServer(app);
 
