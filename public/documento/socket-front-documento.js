@@ -6,11 +6,17 @@ import {
   tratarAutorizacaoSucesso,
 } from "./documento.js";
 
-const socket = io("/usuarios", {
-  auth: {
-    token: obterCookie("tokenJwt"),
-  },
-});
+// Configuração dinâmica da URL do servidor com namespace "/usuarios"
+const socket = io(
+  window.location.hostname === "localhost"
+    ? "http://localhost:3000/usuarios" // URL do servidor local com namespace
+    : "https://websocket-ao8f.onrender.com/usuarios", // URL do servidor no Render com namespace
+  {
+    auth: {
+      token: obterCookie("tokenJwt"),
+    },
+  }
+);
 
 socket.on("autorizacao_sucesso", tratarAutorizacaoSucesso);
 
@@ -26,9 +32,9 @@ function selecionarDocumento(dadosEntrada) {
 }
 
 socket.on("usuario_ja_no_documento", () => {
-    alert("Documento já aberto em outra página.");
-    window.location.href = "/";
-})
+  alert("Documento já aberto em outra página.");
+  window.location.href = "/";
+});
 
 socket.on("usuarios_no_documento", atualizarInterfaceUsuarios);
 

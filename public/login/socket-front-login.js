@@ -1,6 +1,10 @@
 import { definirCookie } from "../utils/cookies.js";
 
-const socket = io();
+const socket = io(
+    window.location.hostname === "localhost"
+      ? "http://localhost:3000" // URL do servidor local
+      : "https://websocket-ao8f.onrender.com" // URL do servidor no Render
+  );
 
 function emitirAutenticarUsuario(dados) {
   socket.emit("autenticar_usuario", dados);

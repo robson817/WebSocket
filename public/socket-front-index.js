@@ -1,11 +1,17 @@
 import { inserirLinkDocumento, removerLinkDocumento } from "./index.js";
 import { obterCookie } from "./utils/cookies.js";
 
-const socket = io("/usuarios", {
-  auth: {
-    token: obterCookie("tokenJwt"),
-  },
-});
+// Configuração dinâmica da URL do servidor com namespace "/usuarios"
+const socket = io(
+  window.location.hostname === "localhost"
+    ? "http://localhost:3000/usuarios" // URL do servidor local com namespace
+    : "https://websocket-ao8f.onrender.com/usuarios", // URL do servidor no Render com namespace
+  {
+    auth: {
+      token: obterCookie("tokenJwt"),
+    },
+  }
+);
 
 socket.on("connect_error", (erro) => {
   alert(erro);
