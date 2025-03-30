@@ -1,8 +1,12 @@
 import { definirCookie } from "../utils/cookies.js";
 
-const socket = io("https://websocket-ao8f.onrender.com", {
-    transports: ["websocket"]
-});
+const socket = io("https://websocket-ao8f.onrender.com/usuarios", {
+    transports: ["websocket"],
+    auth: {
+      token: obterCookie("tokenJwt"),
+    },
+  });
+  
 
 function emitirAutenticarUsuario(dados) {
   socket.emit("autenticar_usuario", dados);
