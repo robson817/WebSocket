@@ -17,11 +17,6 @@ const servidorHttp = http.createServer(app);
 
 servidorHttp.listen(porta, () => console.log(`Servidor escutando na porta ${porta}`));
 
-const io = new Server(servidorHttp, {
-    cors: {
-        origin: "*",
-        methods: ["GET", "POST"]
-    }
-});
+const io = new Server(servidorHttp);
 
 export default io;
