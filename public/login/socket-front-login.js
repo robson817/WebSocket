@@ -1,6 +1,6 @@
 import { definirCookie } from "../utils/cookies.js";
 
-const socket = io("wss://websocket-ao8f.onrender.com", {
+const socket = io("https://websocket-ao8f.onrender.com", {
     transports: ["websocket"]
 });
 
